@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "appTitle": "Library",
+  "welcomeTitle": "Welcome to the library",
+  "welcomeDescription": "Browse books, reserve a copy, and track your loans.",
+  "changeLanguage": "Change language"
+}
