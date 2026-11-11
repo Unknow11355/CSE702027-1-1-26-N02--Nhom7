@@ -9,7 +9,6 @@ import 'l10n/generated/app_localizations.dart';
 import 'presentation/auth/auth_viewmodel.dart';
 import 'presentation/auth/screens/login_screen.dart';
 import 'presentation/auth/screens/register_screen.dart';
-//import 'presentation/common/welcome_screen.dart';
 import 'services/auth_service.dart';
 
 class LibraryApp extends StatelessWidget {
@@ -53,9 +52,8 @@ class _AppView extends StatelessWidget {
       theme: AppTheme.light,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      initialRoute: AppRoutes.welcome,
+      initialRoute: AppRoutes.login,
       routes: {
-        AppRoutes.welcome: (_) => const WelcomeScreen(),
         AppRoutes.login: (_) => const LoginScreen(),
         AppRoutes.register: (_) => const RegisterScreen(),
         // Màn hình tạm: LoginScreen điều hướng tới 2 route này sau khi đăng nhập.
