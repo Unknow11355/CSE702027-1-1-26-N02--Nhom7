@@ -110,6 +110,24 @@ abstract class AppLocalizations {
   /// **'THƯ VIỆN'**
   String get appBrandUpper;
 
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chào mừng đến thư viện'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeDescription.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tra cứu, đặt mượn và theo dõi việc mượn trả sách.'**
+  String get welcomeDescription;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chuyển ngôn ngữ'**
+  String get changeLanguage;
+
   /// No description provided for @welcomeHeadline.
   ///
   /// In vi, this message translates to:

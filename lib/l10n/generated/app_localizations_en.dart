@@ -16,6 +16,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appBrandUpper => 'LIBRARY';
 
   @override
+  String get welcomeTitle => 'Welcome to the library';
+
+  @override
+  String get welcomeDescription =>
+      'Browse books, reserve a copy, and track your loans.';
+
+  @override
+  String get changeLanguage => 'Change language';
+
+  @override
   String get welcomeHeadline => 'Your next book\nis waiting for you.';
 
   @override

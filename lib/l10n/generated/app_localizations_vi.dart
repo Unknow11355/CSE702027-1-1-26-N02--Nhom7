@@ -16,6 +16,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appBrandUpper => 'THƯ VIỆN';
 
   @override
+  String get welcomeTitle => 'Chào mừng đến thư viện';
+
+  @override
+  String get welcomeDescription =>
+      'Tra cứu, đặt mượn và theo dõi việc mượn trả sách.';
+
+  @override
+  String get changeLanguage => 'Chuyển ngôn ngữ';
+
+  @override
   String get welcomeHeadline => 'Cuốn sách tiếp theo\nđang chờ bạn.';
 
   @override

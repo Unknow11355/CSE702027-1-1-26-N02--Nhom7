@@ -52,8 +52,8 @@ class SeedData {
       ),
       User(
         id: 'U003',
-        fullName: 'Trần Thị Lan',
-        username: 'lan.reader',
+        fullName: 'Lê Anh Quân',
+        username: 'anhquanreader',
         passwordHash: computePasswordHash(defaultPassword, reader2Salt),
         passwordSalt: reader2Salt,
         role: UserRole.reader,

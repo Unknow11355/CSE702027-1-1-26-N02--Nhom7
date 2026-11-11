@@ -2,6 +2,9 @@
   "@@locale": "vi",
   "appTitle": "Thư viện",
   "appBrandUpper": "THƯ VIỆN",
+  "welcomeTitle": "Chào mừng đến thư viện",
+  "welcomeDescription": "Tra cứu, đặt mượn và theo dõi việc mượn trả sách.",
+  "changeLanguage": "Chuyển ngôn ngữ",
   "welcomeHeadline": "Cuốn sách tiếp theo\nđang chờ bạn.",
   "welcomeSubtitle": "Tra cứu và đặt mượn trên ứng dụng.\nNhận, trả sách trực tiếp tại thư viện.",
   "backTooltip": "Quay lại",
@@ -38,4 +41,5 @@
   "errorPasswordMismatch": "Mật khẩu nhập lại chưa khớp.",
   "registerSuccessMessage": "Đã tạo tài khoản độc giả. Vui lòng đăng nhập.",
   "logoutButton": "Đăng xuất"
+
 }
