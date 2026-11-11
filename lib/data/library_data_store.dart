@@ -1,16 +1,30 @@
-﻿import 'package:flutter/foundation.dart';
+﻿import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 
 import '../models/book.dart';
 import '../models/favorite.dart';
 import '../models/loan.dart';
+import '../models/loan_status.dart';
 import '../models/user.dart';
+import '../models/user_role.dart';
 import 'seed_data.dart';
+import 'store_sync_stub.dart'
+    if (dart.library.js_interop) 'store_sync_web.dart';
 
 class LibraryDataStore extends ChangeNotifier {
   LibraryDataStore() {
     _loadSeedData();
+    _syncAdapter = StoreSyncAdapter(_applySerializedState);
+    final existingJson = _syncAdapter.loadInitialData();
+    if (existingJson != null && existingJson.isNotEmpty) {
+      _applySerializedState(existingJson, notify: false);
+    } else {
+      _syncAdapter.publishData(_encodeState());
+    }
   }
 
+  late final StoreSyncAdapter _syncAdapter;
   late List<User> _users;
   late List<Book> _books;
   late List<Loan> _loans;
@@ -22,19 +36,18 @@ class LibraryDataStore extends ChangeNotifier {
 
   List<Loan> get loans => List<Loan>.unmodifiable(_loans);
 
-  List<Favorite> get favorites =>
-      List<Favorite>.unmodifiable(_favorites);
+  List<Favorite> get favorites => List<Favorite>.unmodifiable(_favorites);
 
   void _loadSeedData() {
-    _users = SeedData.createInitialUsers();
-    _books = SeedData.createInitialBooks();
-    _loans = SeedData.createInitialLoans();
-    _favorites = SeedData.createInitialFavorites();
+    _users = List<User>.of(SeedData.createInitialUsers());
+    _books = List<Book>.of(SeedData.createInitialBooks());
+    _loans = List<Loan>.of(SeedData.createInitialLoans());
+    _favorites = List<Favorite>.of(SeedData.createInitialFavorites());
   }
 
   void resetToSeedData() {
     _loadSeedData();
-    notifyListeners();
+    _publishAndNotify();
   }
 
   void saveUser(User user) {
@@ -52,47 +65,213 @@ class LibraryDataStore extends ChangeNotifier {
   void removeBook(String bookId) {
     _books.removeWhere((book) => book.id == bookId);
     _favorites.removeWhere((favorite) => favorite.bookId == bookId);
-    notifyListeners();
+    _publishAndNotify();
   }
 
   void addFavorite(Favorite favorite) {
     final exists = _favorites.any(
       (item) =>
-          item.userId == favorite.userId &&
-          item.bookId == favorite.bookId,
+          item.userId == favorite.userId && item.bookId == favorite.bookId,
     );
 
     if (exists) return;
 
     _favorites.add(favorite);
-    notifyListeners();
+    _publishAndNotify();
   }
 
-  void removeFavorite({
-    required String userId,
-    required String bookId,
-  }) {
+  void removeFavorite({required String userId, required String bookId}) {
     _favorites.removeWhere(
       (item) => item.userId == userId && item.bookId == bookId,
     );
-    notifyListeners();
+    _publishAndNotify();
   }
 
-  void _saveById<T>(
-    List<T> items,
-    T value,
-    String Function(T) idOf,
-  ) {
-    final index = items.indexWhere(
-      (item) => idOf(item) == idOf(value),
-    );
+  void _saveById<T>(List<T> items, T value, String Function(T) idOf) {
+    final index = items.indexWhere((item) => idOf(item) == idOf(value));
 
     if (index == -1) {
-      items.add(value);
+      items.insert(0, value);
     } else {
       items[index] = value;
     }
 
+    _publishAndNotify();
+  }
+
+  void _publishAndNotify() {
+    _syncAdapter.publishData(_encodeState());
     notifyListeners();
+  }
+
+  String _encodeState() {
+    final payload = <String, dynamic>{
+      'users': _users.map(_userToMap).toList(),
+      'books': _books.map(_bookToMap).toList(),
+      'loans': _loans.map(_loanToMap).toList(),
+      'favorites': _favorites.map(_favoriteToMap).toList(),
+    };
+    return jsonEncode(payload);
+  }
+
+  void _applySerializedState(String rawJson, {bool notify = true}) {
+    try {
+      final decoded = jsonDecode(rawJson);
+      if (decoded is! Map<String, dynamic>) {
+        return;
+      }
+
+      final usersList = decoded['users'];
+      final booksList = decoded['books'];
+      final loansList = decoded['loans'];
+      final favoritesList = decoded['favorites'];
+
+      if (usersList is List) {
+        _users = usersList
+            .whereType<Map<String, dynamic>>()
+            .map(_userFromMap)
+            .toList();
+      }
+      if (booksList is List) {
+        _books = booksList
+            .whereType<Map<String, dynamic>>()
+            .map(_bookFromMap)
+            .toList();
+      }
+      if (loansList is List) {
+        _loans = loansList
+            .whereType<Map<String, dynamic>>()
+            .map(_loanFromMap)
+            .toList();
+      }
+      if (favoritesList is List) {
+        _favorites = favoritesList
+            .whereType<Map<String, dynamic>>()
+            .map(_favoriteFromMap)
+            .toList();
+      }
+
+      if (notify) {
+        notifyListeners();
+      }
+    } catch (_) {
+      // Ignore malformed state payload.
+    }
+  }
+
+  static Map<String, dynamic> _userToMap(User user) {
+    return <String, dynamic>{
+      'id': user.id,
+      'fullName': user.fullName,
+      'username': user.username,
+      'passwordHash': user.passwordHash,
+      'passwordSalt': user.passwordSalt,
+      'role': user.role.name,
+    };
+  }
+
+  static User _userFromMap(Map<String, dynamic> map) {
+    final roleName = map['role'] as String? ?? 'reader';
+    final role = UserRole.values.firstWhere(
+      (item) => item.name == roleName,
+      orElse: () => UserRole.reader,
+    );
+    return User(
+      id: map['id'] as String,
+      fullName: map['fullName'] as String,
+      username: map['username'] as String,
+      passwordHash: map['passwordHash'] as String,
+      passwordSalt: map['passwordSalt'] as String,
+      role: role,
+    );
+  }
+
+  static Map<String, dynamic> _bookToMap(Book book) {
+    return <String, dynamic>{
+      'id': book.id,
+      'title': book.title,
+      'author': book.author,
+      'category': book.category,
+      'totalCopies': book.totalCopies,
+      'description': book.description,
+      'coverAsset': book.coverAsset,
+      'isActive': book.isActive,
+    };
+  }
+
+  static Book _bookFromMap(Map<String, dynamic> map) {
+    return Book(
+      id: map['id'] as String,
+      title: map['title'] as String,
+      author: map['author'] as String,
+      category: map['category'] as String,
+      totalCopies: (map['totalCopies'] as num).toInt(),
+      description: map['description'] as String? ?? '',
+      coverAsset: map['coverAsset'] as String?,
+      isActive: map['isActive'] as bool? ?? true,
+    );
+  }
+
+  static Map<String, dynamic> _loanToMap(Loan loan) {
+    return <String, dynamic>{
+      'id': loan.id,
+      'userId': loan.userId,
+      'bookId': loan.bookId,
+      'createdAt': loan.createdAt.toIso8601String(),
+      'pickupDate': loan.pickupDate.toIso8601String(),
+      'status': loan.status.name,
+      'borrowedAt': loan.borrowedAt?.toIso8601String(),
+      'dueAt': loan.dueAt?.toIso8601String(),
+      'returnedAt': loan.returnedAt?.toIso8601String(),
+      'renewalCount': loan.renewalCount,
+      'reason': loan.reason,
+    };
+  }
+
+  static Loan _loanFromMap(Map<String, dynamic> map) {
+    final statusName = map['status'] as String? ?? 'pending';
+    final status = LoanStatus.values.firstWhere(
+      (item) => item.name == statusName,
+      orElse: () => LoanStatus.pending,
+    );
+    return Loan(
+      id: map['id'] as String,
+      userId: map['userId'] as String,
+      bookId: map['bookId'] as String,
+      createdAt: DateTime.parse(map['createdAt'] as String),
+      pickupDate: DateTime.parse(map['pickupDate'] as String),
+      status: status,
+      borrowedAt: map['borrowedAt'] != null
+          ? DateTime.parse(map['borrowedAt'] as String)
+          : null,
+      dueAt: map['dueAt'] != null
+          ? DateTime.parse(map['dueAt'] as String)
+          : null,
+      returnedAt: map['returnedAt'] != null
+          ? DateTime.parse(map['returnedAt'] as String)
+          : null,
+      renewalCount: (map['renewalCount'] as num?)?.toInt() ?? 0,
+      reason: map['reason'] as String?,
+    );
+  }
+
+  static Map<String, dynamic> _favoriteToMap(Favorite favorite) {
+    return <String, dynamic>{
+      'userId': favorite.userId,
+      'bookId': favorite.bookId,
+    };
+  }
+
+  static Favorite _favoriteFromMap(Map<String, dynamic> map) {
+    return Favorite(
+      userId: map['userId'] as String,
+      bookId: map['bookId'] as String,
+    );
+  }
+
+  @override
+  void dispose() {
+    _syncAdapter.dispose();
+    super.dispose();
   }
 }

@@ -104,23 +104,227 @@ abstract class AppLocalizations {
   /// **'Thư viện'**
   String get appTitle;
 
-  /// No description provided for @welcomeTitle.
+  /// No description provided for @appBrandUpper.
   ///
   /// In vi, this message translates to:
-  /// **'Chào mừng đến thư viện'**
-  String get welcomeTitle;
+  /// **'THƯ VIỆN'**
+  String get appBrandUpper;
 
-  /// No description provided for @welcomeDescription.
+  /// No description provided for @welcomeHeadline.
   ///
   /// In vi, this message translates to:
-  /// **'Tra cứu, đặt mượn và theo dõi việc mượn trả sách.'**
-  String get welcomeDescription;
+  /// **'Cuốn sách tiếp theo\nđang chờ bạn.'**
+  String get welcomeHeadline;
 
-  /// No description provided for @changeLanguage.
+  /// No description provided for @welcomeSubtitle.
   ///
   /// In vi, this message translates to:
-  /// **'Chuyển ngôn ngữ'**
-  String get changeLanguage;
+  /// **'Tra cứu và đặt mượn trên ứng dụng.\nNhận, trả sách trực tiếp tại thư viện.'**
+  String get welcomeSubtitle;
+
+  /// No description provided for @backTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Quay lại'**
+  String get backTooltip;
+
+  /// No description provided for @togglePasswordTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hiện/ẩn mật khẩu'**
+  String get togglePasswordTooltip;
+
+  /// No description provided for @toggleConfirmPasswordTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hiện/ẩn mật khẩu nhập lại'**
+  String get toggleConfirmPasswordTooltip;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập'**
+  String get loginTitle;
+
+  /// No description provided for @loginButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập'**
+  String get loginButton;
+
+  /// No description provided for @createReaderAccountButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo tài khoản độc giả'**
+  String get createReaderAccountButton;
+
+  /// No description provided for @welcomeBackTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chào mừng trở lại'**
+  String get welcomeBackTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập để đặt mượn và theo dõi sách của bạn.'**
+  String get loginSubtitle;
+
+  /// No description provided for @usernameLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tên đăng nhập'**
+  String get usernameLabel;
+
+  /// No description provided for @usernameHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập tên đăng nhập'**
+  String get usernameHint;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập mật khẩu'**
+  String get passwordHint;
+
+  /// No description provided for @retryButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thử lại'**
+  String get retryButton;
+
+  /// No description provided for @noAccountRegisterPrompt.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa có tài khoản? Đăng ký'**
+  String get noAccountRegisterPrompt;
+
+  /// No description provided for @createAccountShortButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo tài khoản'**
+  String get createAccountShortButton;
+
+  /// No description provided for @loginErrorTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa đăng nhập được'**
+  String get loginErrorTitle;
+
+  /// No description provided for @loginErrorMessage.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tên đăng nhập hoặc mật khẩu chưa đúng.'**
+  String get loginErrorMessage;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo tài khoản'**
+  String get registerTitle;
+
+  /// No description provided for @registerHeadline.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bắt đầu mượn sách'**
+  String get registerHeadline;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tài khoản mới dành cho độc giả.'**
+  String get registerSubtitle;
+
+  /// No description provided for @registerErrorBannerTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Kiểm tra lại thông tin'**
+  String get registerErrorBannerTitle;
+
+  /// No description provided for @registerErrorBannerMessage.
+  ///
+  /// In vi, this message translates to:
+  /// **'Sửa các trường được đánh dấu bên dưới.'**
+  String get registerErrorBannerMessage;
+
+  /// No description provided for @fullNameLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Họ và tên'**
+  String get fullNameLabel;
+
+  /// No description provided for @fullNameHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập họ và tên'**
+  String get fullNameHint;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập lại mật khẩu'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập lại mật khẩu'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @registerButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng ký'**
+  String get registerButton;
+
+  /// No description provided for @alreadyHaveAccountLoginPrompt.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã có tài khoản? Đăng nhập'**
+  String get alreadyHaveAccountLoginPrompt;
+
+  /// No description provided for @errorRequiredField.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vui lòng nhập thông tin này.'**
+  String get errorRequiredField;
+
+  /// No description provided for @errorPasswordTooShort.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu cần tối thiểu 6 ký tự.'**
+  String get errorPasswordTooShort;
+
+  /// No description provided for @errorUsernameExists.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tên đăng nhập đã tồn tại. Chọn tên khác.'**
+  String get errorUsernameExists;
+
+  /// No description provided for @errorPasswordMismatch.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu nhập lại chưa khớp.'**
+  String get errorPasswordMismatch;
+
+  /// No description provided for @registerSuccessMessage.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã tạo tài khoản độc giả. Vui lòng đăng nhập.'**
+  String get registerSuccessMessage;
+
+  /// No description provided for @logoutButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng xuất'**
+  String get logoutButton;
 }
 
 class _AppLocalizationsDelegate
