@@ -1,4 +1,5 @@
-﻿import 'package:flutter/foundation.dart';
+﻿// Bước 19: Màn hình hồ sơ cá nhân và đổi mật khẩu
+import 'package:flutter/foundation.dart';
 
 import '../../core/app_exception.dart';
 import '../../models/user.dart';
@@ -166,3 +167,4 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
