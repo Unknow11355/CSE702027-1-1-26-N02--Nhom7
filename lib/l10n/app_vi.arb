@@ -4,9 +4,9 @@
   "appBrandUpper": "THƯ VIỆN",
   "welcomeTitle": "Chào mừng đến thư viện",
   "welcomeDescription": "Tra cứu, đặt mượn và theo dõi việc mượn trả sách.",
-  "changeLanguage": "Chuyển ngôn ngữ",
   "welcomeHeadline": "Cuốn sách tiếp theo\nđang chờ bạn.",
   "welcomeSubtitle": "Tra cứu và đặt mượn trên ứng dụng.\nNhận, trả sách trực tiếp tại thư viện.",
+  "changeLanguage": "Chuyển ngôn ngữ",
   "backTooltip": "Quay lại",
   "togglePasswordTooltip": "Hiện/ẩn mật khẩu",
   "toggleConfirmPasswordTooltip": "Hiện/ẩn mật khẩu nhập lại",
@@ -22,6 +22,7 @@
   "retryButton": "Thử lại",
   "noAccountRegisterPrompt": "Chưa có tài khoản? Đăng ký",
   "createAccountShortButton": "Tạo tài khoản",
+  "librarianAccountNotice": "Tài khoản thủ thư do thư viện cấp.",
   "loginErrorTitle": "Chưa đăng nhập được",
   "loginErrorMessage": "Tên đăng nhập hoặc mật khẩu chưa đúng.",
   "registerTitle": "Tạo tài khoản",
@@ -40,6 +41,561 @@
   "errorUsernameExists": "Tên đăng nhập đã tồn tại. Chọn tên khác.",
   "errorPasswordMismatch": "Mật khẩu nhập lại chưa khớp.",
   "registerSuccessMessage": "Đã tạo tài khoản độc giả. Vui lòng đăng nhập.",
-  "logoutButton": "Đăng xuất"
-
+  "logoutButton": "Đăng xuất",
+  "navExplore": "Khám phá",
+  "navMyLoans": "Phiếu mượn",
+  "navFavorites": "Yêu thích",
+  "navAccount": "Cá nhân",
+  "navOverview": "Tổng quan",
+  "navBooks": "Sách",
+  "navLoans": "Phiếu mượn",
+  "categoryAll": "Tất cả",
+  "categoryLiterature": "Văn học",
+  "categoryScience": "Khoa học",
+  "statusPending": "Chờ duyệt",
+  "statusReadyForPickup": "Chờ nhận",
+  "statusBorrowed": "Đang mượn",
+  "statusReturned": "Đã trả",
+  "statusRejected": "Từ chối",
+  "statusCancelled": "Đã hủy",
+  "statusOverdue": "Quá hạn",
+  "readerGreeting": "Chào {name},\nhôm nay bạn muốn đọc gì?",
+  "@readerGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "searchBooksHint": "Tìm tên sách...",
+  "searchBooksTitle": "Tìm sách",
+  "dueSoonBannerTitle": "Có {count} sách sắp đến hạn",
+  "@dueSoonBannerTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueBannerReaderTitle": "Có {count} sách đã quá hạn trả",
+  "@overdueBannerReaderTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dueSoonBannerSubtitle": "{title} · còn {days} ngày",
+  "@dueSoonBannerSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueBannerReaderSubtitle": "{title} · quá hạn {days} ngày",
+  "@overdueBannerReaderSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "exploreShelvesTitle": "Khám phá trên kệ",
+  "viewAllButton": "Xem tất cả",
+  "suggestedForYouTitle": "Bạn cũng có thể thích",
+  "copiesAvailableShort": "Còn {available} bản",
+  "@copiesAvailableShort": {
+    "placeholders": {
+      "available": {
+        "type": "int"
+      }
+    }
+  },
+  "copiesRatioLabel": "Còn {available}/{total} bản",
+  "@copiesRatioLabel": {
+    "placeholders": {
+      "available": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "outOfCopiesLabel": "Tạm hết bản khả dụng",
+  "bookCountLabel": "{count} đầu sách",
+  "@bookCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noBooksFoundTitle": "Chưa tìm thấy sách phù hợp",
+  "noBooksFoundSubtitle": "Thử từ khóa ngắn hơn hoặc bỏ bộ lọc thể loại.",
+  "clearFiltersButton": "Xóa bộ lọc",
+  "bookDetailTitle": "Chi tiết sách",
+  "bookIdPrefix": "Mã sách {id}",
+  "@bookIdPrefix": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutBookSection": "Giới thiệu",
+  "detailInfoSection": "Thông tin chi tiết",
+  "formatLabel": "Hình thức",
+  "formatPhysicalBook": "Sách giấy",
+  "loanDurationLabel": "Thời hạn mượn",
+  "loanDurationValue": "7 ngày từ khi nhận",
+  "perLoanLabel": "Mỗi phiếu",
+  "perLoanValue": "1 bản sách",
+  "requestBorrowButton": "Đăng ký mượn",
+  "outOfStockButton": "Tạm hết sách",
+  "addToFavoritesButton": "Thêm vào yêu thích",
+  "removeFromFavoritesButton": "Bỏ yêu thích",
+  "outOfCopiesBannerTitle": "Hiện chưa có bản để mượn",
+  "outOfCopiesBannerMessage": "Bạn có thể lưu vào yêu thích và kiểm tra lại sau.",
+  "duplicateActiveLoanBannerTitle": "Bạn đã đặt mượn đầu sách này",
+  "duplicateActiveLoanBannerMessage": "Phiếu {loanId} đang {status}. Không thể tạo thêm phiếu cho cùng đầu sách.",
+  "@duplicateActiveLoanBannerMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "viewLoanButton": "Xem phiếu {loanId}",
+  "@viewLoanButton": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "alreadyHasActiveLoanButton": "Đã có phiếu đang hoạt động",
+  "favoriteAddedMessage": "Đã thêm vào sách yêu thích.",
+  "favoriteRemovedMessage": "Đã bỏ khỏi sách yêu thích.",
+  "borrowRequestTitle": "Đăng ký mượn",
+  "oneCopyCounterPickup": "1 bản · nhận tại quầy",
+  "pickupDateLabel": "Ngày hẹn nhận",
+  "pickupDateHelper": "Chọn từ hôm nay đến 7 ngày tới.",
+  "selectPickupDateTooltip": "Chọn ngày nhận",
+  "datePickerHelpText": "CHỌN NGÀY NHẬN",
+  "datePickerCancelButton": "Hủy",
+  "datePickerConfirmButton": "Chọn ngày",
+  "activeLoansCountLabel": "Phiếu đang hoạt động",
+  "activeLoansShortLabel": "Phiếu hoạt động",
+  "activeLoansRatioValue": "{active}/{max} phiếu",
+  "@activeLoansRatioValue": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "loanDurationFromPickupValue": "7 ngày kể từ lúc nhận",
+  "holdDeadlineLabel": "Hạn giữ chỗ",
+  "holdDeadlineValue": "Hết ngày hẹn nhận",
+  "holdNoticeBannerTitle": "Giữ chỗ ngay khi gửi",
+  "holdNoticeBannerMessage": "1 bản sẽ được giữ cho bạn. Bạn có thể hủy khi phiếu chưa chuyển sang Đang mượn.",
+  "submitBorrowRequestButton": "Gửi yêu cầu mượn",
+  "borrowRequestSuccessMessage": "Đã gửi yêu cầu. Thư viện đang giữ 1 bản cho bạn.",
+  "limitReachedBannerTitle": "Bạn đã có 3 phiếu đang hoạt động",
+  "limitReachedBannerMessage": "Hãy trả sách hoặc hủy một yêu cầu chưa nhận rồi thử lại.",
+  "limitReachedButton": "Đã đạt giới hạn 3 phiếu",
+  "viewMyLoansButton": "Xem phiếu của tôi",
+  "myLoansTitle": "Phiếu mượn của tôi",
+  "loanHistoryTitle": "Lịch sử mượn",
+  "filterActiveLoans": "Đang hoạt động",
+  "filterLoanHistory": "Lịch sử",
+  "activeLoansSummary": "{active}/{max} phiếu đang hoạt động",
+  "@activeLoansSummary": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pickupDateInline": "Hẹn nhận: {date}",
+  "@pickupDateInline": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueDateInline": "Hạn trả: {date}",
+  "@dueDateInline": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "trackLoansBannerTitle": "Theo dõi phiếu tại đây",
+  "trackLoansBannerMessage": "Sau khi được duyệt, mang mã phiếu đến quầy để nhận sách.",
+  "emptyLoansTitle": "Chưa có phiếu mượn nào",
+  "emptyLoansSubtitle": "Khám phá kệ sách và đăng ký mượn cuốn sách bạn yêu thích.",
+  "loanDetailTitle": "Chi tiết phiếu",
+  "loanIdLabel": "Mã phiếu",
+  "readerLabel": "Độc giả",
+  "accountLabel": "Tài khoản",
+  "createdAtLabel": "Ngày đăng ký",
+  "pickupDateShortLabel": "Hẹn nhận",
+  "borrowedAtLabel": "Đã nhận sách",
+  "dueAtLabel": "Hạn trả",
+  "newDueAtLabel": "Hạn trả mới",
+  "returnedAtLabel": "Đã trả",
+  "renewalLabel": "Gia hạn",
+  "renewalUsedValue": "Đã sử dụng {count}/1 lần",
+  "@renewalUsedValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonLabel": "Lý do",
+  "processedByLabel": "Xử lý bởi",
+  "librarianRoleName": "Thủ thư",
+  "readerRoleName": "Độc giả",
+  "availableAfterProcessLabel": "Khả dụng sau xử lý",
+  "copiesCountValue": "{count} bản",
+  "@copiesCountValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingBannerTitle": "Đã giữ chỗ 1 bản",
+  "pendingBannerMessage": "Yêu cầu đang chờ thủ thư duyệt.",
+  "readyBannerTitle": "Sách đã sẵn sàng",
+  "readyBannerMessage": "Đến quầy nhận sách trong ngày {date}. Mang theo mã phiếu {loanId}.",
+  "@readyBannerMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "borrowedBannerTitle": "Còn {days} ngày để trả sách",
+  "@borrowedBannerTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "borrowedRenewableBannerMessage": "Có thể gia hạn thêm 7 ngày, tối đa 1 lần.",
+  "borrowedDueSoonBannerMessage": "Mang sách đến quầy thư viện trước hạn.",
+  "renewedBannerTitle": "Đã gia hạn thành công",
+  "renewedBannerMessage": "Hạn trả mới: {date}.",
+  "@renewedBannerMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "overdueLoanBannerTitle": "Đã quá hạn trả {days} ngày",
+  "@overdueLoanBannerTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueLoanBannerMessage": "Vui lòng mang sách đến quầy. Phiếu quá hạn không được gia hạn.",
+  "returnedBannerTitle": "Đã hoàn tất",
+  "returnedBannerMessage": "Thư viện đã ghi nhận sách trả. Cảm ơn bạn!",
+  "rejectedReaderBannerTitle": "Yêu cầu chưa được chấp nhận",
+  "rejectedLibrarianBannerTitle": "Đã từ chối yêu cầu",
+  "rejectedBannerMessage": "Lý do: {reason}",
+  "@rejectedBannerMessage": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelledBannerTitle": "Đã hủy yêu cầu",
+  "cancelledBannerMessage": "Bản sách đã được trả lại thư viện.",
+  "expiredPickupBannerTitle": "Đã hủy do quá hạn nhận",
+  "expiredPickupBannerMessage": "Bạn chưa nhận sách trước khi hết ngày hẹn. Bản sách đã được trả lại kho.",
+  "cancelRequestButton": "Hủy yêu cầu",
+  "cancelDialogTitle": "Hủy yêu cầu mượn?",
+  "cancelDialogMessage": "Phiếu {loanId} sẽ được hủy. Bản sách đã giữ chỗ sẽ được trả về thư viện.",
+  "@cancelDialogMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "keepLoanButton": "Giữ lại phiếu",
+  "cancelSuccessMessage": "Đã hủy yêu cầu.",
+  "renewLoanButton": "Gia hạn thêm 7 ngày",
+  "renewDialogTitle": "Gia hạn thêm 7 ngày?",
+  "currentDueLabel": "Hạn hiện tại",
+  "newDueLabel": "Hạn mới",
+  "renewDialogMessage": "Mỗi phiếu được gia hạn 1 lần. Sau xác nhận, bạn không thể gia hạn lần nữa.",
+  "confirmRenewButton": "Xác nhận gia hạn",
+  "laterButton": "Để sau",
+  "renewSuccessMessage": "Đã gia hạn đến {date}.",
+  "@renewSuccessMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noRenewalsLeftButton": "Đã hết lượt gia hạn",
+  "backToMyLoansButton": "Về phiếu mượn",
+  "searchToRebookButton": "Tra cứu để đặt lại",
+  "findOtherBooksButton": "Tìm sách khác",
+  "exploreOtherBooksButton": "Khám phá sách khác",
+  "scrollHintLargeText": "Nội dung có thể cuộn khi bạn tăng kích thước chữ trên thiết bị.",
+  "reasonExpiredPickup": "Quá hạn nhận",
+  "reasonReaderCancelled": "Độc giả hủy yêu cầu",
+  "approveRequestButton": "Duyệt yêu cầu",
+  "approveSuccessMessage": "Đã duyệt phiếu.",
+  "rejectRequestButton": "Từ chối yêu cầu",
+  "rejectDialogTitle": "Từ chối yêu cầu",
+  "rejectDialogSubtitle": "Cho độc giả biết lý do chưa thể mượn sách.",
+  "rejectReasonLabel": "Lý do từ chối *",
+  "rejectReasonHint": "Sách cần kiểm tra tình trạng.",
+  "confirmRejectButton": "Xác nhận từ chối",
+  "rejectSuccessMessage": "Đã từ chối yêu cầu.",
+  "confirmHandoverButton": "Xác nhận đã giao sách",
+  "handoverDialogTitle": "Đã giao sách cho độc giả?",
+  "handoverDialogSubtitle": "Xác nhận khi {reader} đã nhận 1 bản {book} tại quầy.",
+  "@handoverDialogSubtitle": {
+    "placeholders": {
+      "reader": {
+        "type": "String"
+      },
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "pickupTimeLabel": "Ngày nhận",
+  "expectedDueDateLabel": "Hạn trả dự kiến",
+  "confirmHandedOverButton": "Đã giao sách",
+  "notHandedOverButton": "Chưa giao",
+  "handoverSuccessMessage": "Đã xác nhận giao sách.",
+  "confirmReturnButton": "Xác nhận đã trả sách",
+  "returnDialogTitle": "Đã nhận lại sách?",
+  "returnDialogSubtitle": "Xác nhận khi thư viện đã nhận lại 1 bản {book} từ {reader}.",
+  "@returnDialogSubtitle": {
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "reader": {
+        "type": "String"
+      }
+    }
+  },
+  "returnDialogMessage": "Phiếu {loanId} sẽ chuyển sang Đã trả và tăng số bản khả dụng thêm 1.",
+  "@returnDialogMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmReturnDialogButton": "Xác nhận trả sách",
+  "notReturnedYetButton": "Chưa nhận lại",
+  "returnSuccessMessage": "Đã ghi nhận trả sách.",
+  "backToLoanListButton": "Về danh sách phiếu",
+  "favoritesTitle": "Sách yêu thích",
+  "savedBooksCountLabel": "{count} cuốn sách đã lưu",
+  "@savedBooksCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesTapHint": "Chạm vào sách để xem chi tiết hoặc bỏ yêu thích.",
+  "emptyFavoritesTitle": "Kệ yêu thích còn trống",
+  "emptyFavoritesSubtitle": "Chạm biểu tượng trái tim trong chi tiết sách để lưu những cuốn bạn muốn đọc.",
+  "exploreBooksButton": "Khám phá sách",
+  "accountTitle": "Cá nhân",
+  "activeLoansSubtitle": "{count} phiếu đang hoạt động",
+  "@activeLoansSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Ngôn ngữ",
+  "currentLanguageVietnamese": "Tiếng Việt",
+  "currentLanguageEnglish": "English",
+  "selectLanguageHeading": "Chọn ngôn ngữ hiển thị",
+  "selectLanguageSubtitle": "Áp dụng cho toàn bộ giao diện, thông báo và trạng thái phiếu.",
+  "inUseLabel": "Đang sử dụng",
+  "switchToVietnameseSubtitle": "Chuyển giao diện sang Tiếng Việt",
+  "switchToEnglishSubtitle": "Switch interface to English",
+  "bookContentPreservedBannerTitle": "Nội dung sách giữ nguyên",
+  "bookContentPreservedBannerMessage": "Tên sách, tác giả và thông tin tài khoản không được dịch tự động.",
+  "teamInfoTitle": "Thông tin nhóm",
+  "teamInfoSubtitleReader": "Ứng dụng đặt mượn sách thư viện",
+  "teamInfoSubtitleLibrarian": "Nhóm thực hiện ứng dụng",
+  "teamAppHeading": "Ứng dụng đặt mượn\nsách thư viện",
+  "teamCourseSubtitle": "Bài tập lớn · Lập trình thiết bị di động",
+  "member1Name": "Vũ Xuân Minh",
+  "member1Info": "MSSV: 24100363\nXây dựng trang chủ độc giả và thủ thư, tìm kiếm, lọc, xem chi tiết sách và quản lý danh mục sách.",
+  "member2Name": "Lê Anh Quân",
+  "member2Info": "MSSV: 23010580\nXây dựng đăng ký, đăng nhập, đăng xuất, thông tin cá nhân, đa ngôn ngữ và mô hình, kho dữ liệu dùng chung.",
+  "member3Name": "Trần Hữu Kiên",
+  "member3Info": "MSSV: 23010258\nXây dựng luồng đặt mượn, theo dõi, hủy, gia hạn, duyệt phiếu, giao–trả sách và quản lý sách yêu thích.",
+  "appVersionLabel": "Phiên bản 1.0",
+  "librarianDeskTitle": "Bàn thủ thư",
+  "librarianGreetingTitle": "Chào thủ thư,",
+  "librarianGreetingSubtitle": "Hôm nay cần xử lý gì?",
+  "metricBookTitles": "Đầu sách",
+  "metricBorrowedCopies": "Bản đang mượn",
+  "metricPendingRequests": "Phiếu chờ duyệt",
+  "metricOverdueLoans": "Phiếu quá hạn",
+  "recentRequestsTitle": "Yêu cầu gần đây",
+  "overdueLibrarianBannerTitle": "{count} sách đang quá hạn",
+  "@overdueLibrarianBannerTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueLibrarianBannerMessage": "Mở phiếu để kiểm tra thông tin độc giả.",
+  "bookManagementTitle": "Quản lý sách",
+  "searchBookOrCodeHint": "Tên sách hoặc mã sách",
+  "addBookButton": "Thêm đầu sách",
+  "filterActiveBooks": "Đang phục vụ",
+  "filterInactiveBooks": "Ngừng phục vụ",
+  "bookSummaryLine": "{id} · Tổng {total} · Khả dụng {available}",
+  "@bookSummaryLine": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "total": {
+        "type": "int"
+      },
+      "available": {
+        "type": "int"
+      }
+    }
+  },
+  "bookInactiveSummaryLine": "{id} · Ngừng phục vụ",
+  "@bookInactiveSummaryLine": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "historyPreservedBannerTitle": "Lịch sử được giữ nguyên",
+  "historyPreservedBannerMessage": "Đầu sách ngừng phục vụ không xuất hiện trong danh sách đặt mượn của độc giả.",
+  "bookInfoTitle": "Thông tin đầu sách",
+  "bookIdShortLabel": "Mã sách",
+  "totalCopiesLabel": "Tổng số bản",
+  "reservedCopiesLabel": "Đang giữ chỗ",
+  "borrowedCopiesLabel": "Đang mượn",
+  "availableCopiesLabel": "Khả dụng",
+  "editBookButton": "Chỉnh sửa đầu sách",
+  "deactivateBookButton": "Ngừng phục vụ",
+  "activateBookButton": "Mở phục vụ lại",
+  "deleteBookButton": "Xóa đầu sách",
+  "activeLoansOnBookBannerTitle": "Đang có phiếu hoạt động",
+  "activeLoansOnBookBannerMessage": "Chỉ ngừng phục vụ hoặc xóa khi không còn phiếu Chờ duyệt, Chờ nhận, Đang mượn.",
+  "historyOnlyOnBookBannerTitle": "Chỉ còn lịch sử mượn",
+  "historyOnlyOnBookBannerMessage": "Có thể ngừng phục vụ để giữ nguyên lịch sử mượn.",
+  "cannotDeactivateDialogTitle": "Chưa thể ngừng phục vụ",
+  "cannotDeactivateDialogMessage": "Đầu sách này đang có {count} phiếu hoạt động. Hãy hoàn tất hoặc hủy các phiếu hợp lệ trước.",
+  "@cannotDeactivateDialogMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "viewRelatedLoansButton": "Xem phiếu liên quan",
+  "closeButton": "Đóng",
+  "deactivateBookDialogTitle": "Ngừng phục vụ đầu sách?",
+  "deactivateBookDialogMessage": "Đầu sách đã có lịch sử mượn nên không thể xóa. Sau khi ngừng phục vụ, độc giả không thể đặt mượn mới; lịch sử vẫn được giữ.",
+  "deactivateSuccessMessage": "Đã ngừng phục vụ đầu sách.",
+  "deleteBookDialogTitle": "Xóa đầu sách {bookId}?",
+  "@deleteBookDialogTitle": {
+    "placeholders": {
+      "bookId": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteBookDialogMessage": "Đầu sách chưa từng xuất hiện trong phiếu mượn. Sau khi xóa, sách sẽ không còn trong danh mục.",
+  "keepBookButton": "Giữ lại",
+  "deleteBookSuccessMessage": "Đã xóa đầu sách.",
+  "addBookTitle": "Thêm đầu sách",
+  "editBookTitle": "Chỉnh sửa đầu sách",
+  "requiredFieldsNotice": "Thông tin bắt buộc được đánh dấu *.",
+  "bookIdRequiredLabel": "Mã đầu sách *",
+  "bookIdFixedLabel": "Mã sách (cố định)",
+  "bookTitleRequiredLabel": "Tên sách *",
+  "bookTitleHint": "Nhập tên sách",
+  "authorRequiredLabel": "Tác giả *",
+  "authorHint": "Nhập tên tác giả",
+  "categoryRequiredLabel": "Thể loại *",
+  "categoryHint": "Chọn thể loại",
+  "totalCopiesRequiredLabel": "Tổng số bản *",
+  "descriptionLabel": "Mô tả",
+  "descriptionHint": "Nhập giới thiệu ngắn",
+  "saveBookButton": "Lưu đầu sách",
+  "saveChangesButton": "Lưu thay đổi",
+  "saveBookSuccessMessage": "Đã lưu thông tin đầu sách.",
+  "errorBookIdExists": "Mã đầu sách đã tồn tại.",
+  "errorInvalidTotalCopies": "Nhập số nguyên lớn hơn hoặc bằng 0.",
+  "errorTotalCopiesBelowActive": "Tối thiểu {min} bản: đang giữ chỗ {reserved}, đang mượn {borrowed}.",
+  "@errorTotalCopiesBelowActive": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "reserved": {
+        "type": "int"
+      },
+      "borrowed": {
+        "type": "int"
+      }
+    }
+  },
+  "cannotSaveBookBannerTitle": "Chưa thể lưu thay đổi",
+  "cannotSaveBookBannerMessage": "Tổng số bản không được thấp hơn số bản đang giữ chỗ và đang mượn.",
+  "loanManagementTitle": "Quản lý phiếu mượn",
+  "searchLoansHint": "Mã phiếu, độc giả, tên sách",
+  "allLoansButton": "Tất cả phiếu"
 }

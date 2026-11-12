@@ -5,6 +5,14 @@ class LocaleViewModel extends ChangeNotifier {
 
   Locale get locale => _locale;
 
+  void setLocale(Locale newLocale) {
+    if (_locale.languageCode == newLocale.languageCode) {
+      return;
+    }
+    _locale = newLocale;
+    notifyListeners();
+  }
+
   void toggleLanguage() {
     _locale = Locale(
       _locale.languageCode == 'vi' ? 'en' : 'vi',

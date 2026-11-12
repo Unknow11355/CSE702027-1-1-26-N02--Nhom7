@@ -4,9 +4,9 @@
   "appBrandUpper": "LIBRARY",
   "welcomeTitle": "Welcome to the library",
   "welcomeDescription": "Browse books, reserve a copy, and track your loans.",
-  "changeLanguage": "Change language",
   "welcomeHeadline": "Your next book\nis waiting for you.",
   "welcomeSubtitle": "Search and reserve on the app.\nPick up and return books at the library.",
+  "changeLanguage": "Change language",
   "backTooltip": "Back",
   "togglePasswordTooltip": "Show/hide password",
   "toggleConfirmPasswordTooltip": "Show/hide confirm password",
@@ -22,6 +22,7 @@
   "retryButton": "Try again",
   "noAccountRegisterPrompt": "Don't have an account? Register",
   "createAccountShortButton": "Create account",
+  "librarianAccountNotice": "Librarian accounts are issued by the library.",
   "loginErrorTitle": "Unable to sign in",
   "loginErrorMessage": "Incorrect username or password.",
   "registerTitle": "Create account",
@@ -40,5 +41,561 @@
   "errorUsernameExists": "Username already exists. Choose another one.",
   "errorPasswordMismatch": "Passwords do not match.",
   "registerSuccessMessage": "Reader account created. Please sign in.",
-  "logoutButton": "Sign out"
+  "logoutButton": "Sign out",
+  "navExplore": "Explore",
+  "navMyLoans": "My loans",
+  "navFavorites": "Saved",
+  "navAccount": "Account",
+  "navOverview": "Overview",
+  "navBooks": "Books",
+  "navLoans": "Loans",
+  "categoryAll": "All",
+  "categoryLiterature": "Literature",
+  "categoryScience": "Science",
+  "statusPending": "Pending",
+  "statusReadyForPickup": "Ready for pickup",
+  "statusBorrowed": "Borrowed",
+  "statusReturned": "Returned",
+  "statusRejected": "Rejected",
+  "statusCancelled": "Cancelled",
+  "statusOverdue": "Overdue",
+  "readerGreeting": "Hi {name},\nwhat will you read today?",
+  "@readerGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "searchBooksHint": "Search book titles...",
+  "searchBooksTitle": "Search books",
+  "dueSoonBannerTitle": "{count} book is due soon",
+  "@dueSoonBannerTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueBannerReaderTitle": "{count} book is overdue",
+  "@overdueBannerReaderTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dueSoonBannerSubtitle": "{title} · {days} days left",
+  "@dueSoonBannerSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueBannerReaderSubtitle": "{title} · {days} days overdue",
+  "@overdueBannerReaderSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "exploreShelvesTitle": "Explore the shelves",
+  "viewAllButton": "View all",
+  "suggestedForYouTitle": "You might also like",
+  "copiesAvailableShort": "{available} copies available",
+  "@copiesAvailableShort": {
+    "placeholders": {
+      "available": {
+        "type": "int"
+      }
+    }
+  },
+  "copiesRatioLabel": "{available}/{total} copies available",
+  "@copiesRatioLabel": {
+    "placeholders": {
+      "available": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "outOfCopiesLabel": "No copies available",
+  "bookCountLabel": "{count} book titles",
+  "@bookCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noBooksFoundTitle": "No matching books found",
+  "noBooksFoundSubtitle": "Try a shorter keyword or clear the category filter.",
+  "clearFiltersButton": "Clear filters",
+  "bookDetailTitle": "Book details",
+  "bookIdPrefix": "Book ID {id}",
+  "@bookIdPrefix": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutBookSection": "About",
+  "detailInfoSection": "Details",
+  "formatLabel": "Format",
+  "formatPhysicalBook": "Physical book",
+  "loanDurationLabel": "Loan duration",
+  "loanDurationValue": "7 days from pickup",
+  "perLoanLabel": "Per loan",
+  "perLoanValue": "1 copy",
+  "requestBorrowButton": "Reserve copy",
+  "outOfStockButton": "Out of stock",
+  "addToFavoritesButton": "Add to saved",
+  "removeFromFavoritesButton": "Remove from saved",
+  "outOfCopiesBannerTitle": "No copies available right now",
+  "outOfCopiesBannerMessage": "You can save this book and check back later.",
+  "duplicateActiveLoanBannerTitle": "You already have an active loan for this book",
+  "duplicateActiveLoanBannerMessage": "Loan {loanId} is {status}. Cannot create another request for the same book.",
+  "@duplicateActiveLoanBannerMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "viewLoanButton": "View loan {loanId}",
+  "@viewLoanButton": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "alreadyHasActiveLoanButton": "Active loan exists",
+  "favoriteAddedMessage": "Added to saved books.",
+  "favoriteRemovedMessage": "Removed from saved books.",
+  "borrowRequestTitle": "Reserve copy",
+  "oneCopyCounterPickup": "1 copy · counter pickup",
+  "pickupDateLabel": "Pickup date",
+  "pickupDateHelper": "Choose from today up to 7 days ahead.",
+  "selectPickupDateTooltip": "Select pickup date",
+  "datePickerHelpText": "SELECT PICKUP DATE",
+  "datePickerCancelButton": "Cancel",
+  "datePickerConfirmButton": "Select date",
+  "activeLoansCountLabel": "Active loans",
+  "activeLoansShortLabel": "Active loans",
+  "activeLoansRatioValue": "{active}/{max} loans",
+  "@activeLoansRatioValue": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "loanDurationFromPickupValue": "7 days from pickup",
+  "holdDeadlineLabel": "Hold expires",
+  "holdDeadlineValue": "End of pickup date",
+  "holdNoticeBannerTitle": "Copy held upon request",
+  "holdNoticeBannerMessage": "1 copy will be held for you. You can cancel before the loan is marked as Borrowed.",
+  "submitBorrowRequestButton": "Submit request",
+  "borrowRequestSuccessMessage": "Request submitted. The library is holding 1 copy for you.",
+  "limitReachedBannerTitle": "You already have 3 active loans",
+  "limitReachedBannerMessage": "Return a book or cancel an uncollected request and try again.",
+  "limitReachedButton": "3-loan limit reached",
+  "viewMyLoansButton": "View my loans",
+  "myLoansTitle": "My loans",
+  "loanHistoryTitle": "Loan history",
+  "filterActiveLoans": "Active",
+  "filterLoanHistory": "History",
+  "activeLoansSummary": "{active}/{max} active loans",
+  "@activeLoansSummary": {
+    "placeholders": {
+      "active": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pickupDateInline": "Pickup: {date}",
+  "@pickupDateInline": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dueDateInline": "Due: {date}",
+  "@dueDateInline": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "trackLoansBannerTitle": "Track your loans here",
+  "trackLoansBannerMessage": "Once approved, bring the loan ID to the counter to pick up your book.",
+  "emptyLoansTitle": "No loans yet",
+  "emptyLoansSubtitle": "Browse the shelves and reserve a book you like.",
+  "loanDetailTitle": "Loan details",
+  "loanIdLabel": "Loan ID",
+  "readerLabel": "Reader",
+  "accountLabel": "Account",
+  "createdAtLabel": "Requested on",
+  "pickupDateShortLabel": "Pickup date",
+  "borrowedAtLabel": "Picked up on",
+  "dueAtLabel": "Due date",
+  "newDueAtLabel": "New due date",
+  "returnedAtLabel": "Returned on",
+  "renewalLabel": "Renewal",
+  "renewalUsedValue": "Used {count}/1 time",
+  "@renewalUsedValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonLabel": "Reason",
+  "processedByLabel": "Processed by",
+  "librarianRoleName": "Librarian",
+  "readerRoleName": "Reader",
+  "availableAfterProcessLabel": "Available after processing",
+  "copiesCountValue": "{count} copies",
+  "@copiesCountValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingBannerTitle": "1 copy held",
+  "pendingBannerMessage": "Your request is waiting for librarian approval.",
+  "readyBannerTitle": "Book is ready for pickup",
+  "readyBannerMessage": "Pick up at the counter by {date}. Bring loan ID {loanId}.",
+  "@readyBannerMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "borrowedBannerTitle": "{days} days left to return",
+  "@borrowedBannerTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "borrowedRenewableBannerMessage": "Can be renewed for 7 more days, up to 1 time.",
+  "borrowedDueSoonBannerMessage": "Please return the book to the counter before the due date.",
+  "renewedBannerTitle": "Renewed successfully",
+  "renewedBannerMessage": "New due date: {date}.",
+  "@renewedBannerMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "overdueLoanBannerTitle": "Overdue by {days} days",
+  "@overdueLoanBannerTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueLoanBannerMessage": "Please return the book to the counter. Overdue loans cannot be renewed.",
+  "returnedBannerTitle": "Completed",
+  "returnedBannerMessage": "The library has recorded the book return. Thank you!",
+  "rejectedReaderBannerTitle": "Request not approved",
+  "rejectedLibrarianBannerTitle": "Request rejected",
+  "rejectedBannerMessage": "Reason: {reason}",
+  "@rejectedBannerMessage": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelledBannerTitle": "Request cancelled",
+  "cancelledBannerMessage": "The held copy has been returned to the library.",
+  "expiredPickupBannerTitle": "Cancelled due to expired pickup",
+  "expiredPickupBannerMessage": "You did not pick up the book before the pickup date ended. The copy was returned to stock.",
+  "cancelRequestButton": "Cancel request",
+  "cancelDialogTitle": "Cancel borrow request?",
+  "cancelDialogMessage": "Loan {loanId} will be cancelled. The held copy will be returned to the library.",
+  "@cancelDialogMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "keepLoanButton": "Keep loan",
+  "cancelSuccessMessage": "Request cancelled.",
+  "renewLoanButton": "Renew for 7 days",
+  "renewDialogTitle": "Renew for 7 more days?",
+  "currentDueLabel": "Current due date",
+  "newDueLabel": "New due date",
+  "renewDialogMessage": "Each loan can be renewed once. After confirmation, you cannot renew again.",
+  "confirmRenewButton": "Confirm renewal",
+  "laterButton": "Later",
+  "renewSuccessMessage": "Renewed until {date}.",
+  "@renewSuccessMessage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "noRenewalsLeftButton": "No renewals left",
+  "backToMyLoansButton": "Back to my loans",
+  "searchToRebookButton": "Search to reserve again",
+  "findOtherBooksButton": "Find other books",
+  "exploreOtherBooksButton": "Explore other books",
+  "scrollHintLargeText": "Content can scroll when you increase device text size.",
+  "reasonExpiredPickup": "Expired pickup",
+  "reasonReaderCancelled": "Cancelled by reader",
+  "approveRequestButton": "Approve request",
+  "approveSuccessMessage": "Request approved.",
+  "rejectRequestButton": "Reject request",
+  "rejectDialogTitle": "Reject request",
+  "rejectDialogSubtitle": "Let the reader know why the book cannot be borrowed.",
+  "rejectReasonLabel": "Rejection reason *",
+  "rejectReasonHint": "Book needs condition check.",
+  "confirmRejectButton": "Confirm rejection",
+  "rejectSuccessMessage": "Request rejected.",
+  "confirmHandoverButton": "Confirm book handover",
+  "handoverDialogTitle": "Handed over book to reader?",
+  "handoverDialogSubtitle": "Confirm when {reader} has picked up 1 copy of {book} at the counter.",
+  "@handoverDialogSubtitle": {
+    "placeholders": {
+      "reader": {
+        "type": "String"
+      },
+      "book": {
+        "type": "String"
+      }
+    }
+  },
+  "pickupTimeLabel": "Pickup time",
+  "expectedDueDateLabel": "Expected due date",
+  "confirmHandedOverButton": "Handed over",
+  "notHandedOverButton": "Not yet",
+  "handoverSuccessMessage": "Book handover confirmed.",
+  "confirmReturnButton": "Confirm book return",
+  "returnDialogTitle": "Received book back?",
+  "returnDialogSubtitle": "Confirm when the library has received 1 copy of {book} from {reader}.",
+  "@returnDialogSubtitle": {
+    "placeholders": {
+      "book": {
+        "type": "String"
+      },
+      "reader": {
+        "type": "String"
+      }
+    }
+  },
+  "returnDialogMessage": "Loan {loanId} will be marked as Returned and available copies will increase by 1.",
+  "@returnDialogMessage": {
+    "placeholders": {
+      "loanId": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmReturnDialogButton": "Confirm return",
+  "notReturnedYetButton": "Not yet",
+  "returnSuccessMessage": "Book return recorded.",
+  "backToLoanListButton": "Back to loan list",
+  "favoritesTitle": "Saved books",
+  "savedBooksCountLabel": "{count} saved books",
+  "@savedBooksCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "favoritesTapHint": "Tap a book to view details or remove from saved.",
+  "emptyFavoritesTitle": "Your saved shelf is empty",
+  "emptyFavoritesSubtitle": "Tap the heart icon in book details to save books you want to read.",
+  "exploreBooksButton": "Explore books",
+  "accountTitle": "Account",
+  "activeLoansSubtitle": "{count} active loans",
+  "@activeLoansSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageTitle": "Language",
+  "currentLanguageVietnamese": "Tiếng Việt",
+  "currentLanguageEnglish": "English",
+  "selectLanguageHeading": "Select display language",
+  "selectLanguageSubtitle": "Applies to the entire interface, notifications, and loan statuses.",
+  "inUseLabel": "Currently in use",
+  "switchToVietnameseSubtitle": "Chuyển giao diện sang Tiếng Việt",
+  "switchToEnglishSubtitle": "Switch interface to English",
+  "bookContentPreservedBannerTitle": "Book content unchanged",
+  "bookContentPreservedBannerMessage": "Book titles, authors, and account details are not automatically translated.",
+  "teamInfoTitle": "Team info",
+  "teamInfoSubtitleReader": "Library book reservation app",
+  "teamInfoSubtitleLibrarian": "Application development team",
+  "teamAppHeading": "Library Book\nReservation App",
+  "teamCourseSubtitle": "Course Project · Mobile Application Development",
+  "member1Name": "Vũ Xuân Minh",
+  "member1Info": "Student ID: 24100363\nDeveloped reader and librarian home screens, search, filtering, book details, and book catalog management.",
+  "member2Name": "Lê Anh Quân",
+  "member2Info": "Student ID: 23010580\nDeveloped registration, login, logout, personal profile, localization, models, and shared data store.",
+  "member3Name": "Trần Hữu Kiên",
+  "member3Info": "Student ID: 23010258\nDeveloped borrowing, tracking, cancellation, renewal, loan approval, book handover/return flows, and favorites management.",
+  "appVersionLabel": "Version 1.0",
+  "librarianDeskTitle": "Librarian desk",
+  "librarianGreetingTitle": "Welcome back,",
+  "librarianGreetingSubtitle": "What needs attention?",
+  "metricBookTitles": "Book titles",
+  "metricBorrowedCopies": "Borrowed copies",
+  "metricPendingRequests": "Pending requests",
+  "metricOverdueLoans": "Overdue loans",
+  "recentRequestsTitle": "Recent requests",
+  "overdueLibrarianBannerTitle": "{count} loan is overdue",
+  "@overdueLibrarianBannerTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "overdueLibrarianBannerMessage": "Open the loan to view reader details.",
+  "bookManagementTitle": "Book management",
+  "searchBookOrCodeHint": "Book title or book ID",
+  "addBookButton": "Add book title",
+  "filterActiveBooks": "Active",
+  "filterInactiveBooks": "Inactive",
+  "bookSummaryLine": "{id} · Total {total} · Available {available}",
+  "@bookSummaryLine": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "total": {
+        "type": "int"
+      },
+      "available": {
+        "type": "int"
+      }
+    }
+  },
+  "bookInactiveSummaryLine": "{id} · Inactive",
+  "@bookInactiveSummaryLine": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "historyPreservedBannerTitle": "Loan history preserved",
+  "historyPreservedBannerMessage": "Inactive book titles do not appear in the reader's reservation list.",
+  "bookInfoTitle": "Book information",
+  "bookIdShortLabel": "Book ID",
+  "totalCopiesLabel": "Total copies",
+  "reservedCopiesLabel": "Reserved",
+  "borrowedCopiesLabel": "Borrowed",
+  "availableCopiesLabel": "Available",
+  "editBookButton": "Edit book title",
+  "deactivateBookButton": "Deactivate",
+  "activateBookButton": "Reactivate",
+  "deleteBookButton": "Delete book title",
+  "activeLoansOnBookBannerTitle": "Active loans exist",
+  "activeLoansOnBookBannerMessage": "Can only deactivate or delete when there are no Pending, Ready, or Borrowed loans.",
+  "historyOnlyOnBookBannerTitle": "Loan history exists",
+  "historyOnlyOnBookBannerMessage": "You can deactivate this book to preserve loan history.",
+  "cannotDeactivateDialogTitle": "Cannot deactivate yet",
+  "cannotDeactivateDialogMessage": "This book currently has {count} active loans. Please complete or cancel them first.",
+  "@cannotDeactivateDialogMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "viewRelatedLoansButton": "View related loans",
+  "closeButton": "Close",
+  "deactivateBookDialogTitle": "Deactivate book title?",
+  "deactivateBookDialogMessage": "This book has loan history and cannot be deleted. Once deactivated, readers cannot create new requests; history is preserved.",
+  "deactivateSuccessMessage": "Book title deactivated.",
+  "deleteBookDialogTitle": "Delete book title {bookId}?",
+  "@deleteBookDialogTitle": {
+    "placeholders": {
+      "bookId": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteBookDialogMessage": "This book has never been referenced in any loan. After deletion, it will be removed from the catalog.",
+  "keepBookButton": "Keep",
+  "deleteBookSuccessMessage": "Book title deleted.",
+  "addBookTitle": "Add book title",
+  "editBookTitle": "Edit book title",
+  "requiredFieldsNotice": "Required fields are marked with *.",
+  "bookIdRequiredLabel": "Book ID *",
+  "bookIdFixedLabel": "Book ID (fixed)",
+  "bookTitleRequiredLabel": "Book title *",
+  "bookTitleHint": "Enter book title",
+  "authorRequiredLabel": "Author *",
+  "authorHint": "Enter author name",
+  "categoryRequiredLabel": "Category *",
+  "categoryHint": "Select category",
+  "totalCopiesRequiredLabel": "Total copies *",
+  "descriptionLabel": "Description",
+  "descriptionHint": "Enter short description",
+  "saveBookButton": "Save book title",
+  "saveChangesButton": "Save changes",
+  "saveBookSuccessMessage": "Book information saved.",
+  "errorBookIdExists": "Book ID already exists.",
+  "errorInvalidTotalCopies": "Enter an integer greater than or equal to 0.",
+  "errorTotalCopiesBelowActive": "Minimum {min} copies: {reserved} reserved, {borrowed} borrowed.",
+  "@errorTotalCopiesBelowActive": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "reserved": {
+        "type": "int"
+      },
+      "borrowed": {
+        "type": "int"
+      }
+    }
+  },
+  "cannotSaveBookBannerTitle": "Unable to save changes",
+  "cannotSaveBookBannerMessage": "Total copies cannot be less than reserved and borrowed copies.",
+  "loanManagementTitle": "Loan management",
+  "searchLoansHint": "Loan ID, reader, book title",
+  "allLoansButton": "All loans"
 }
