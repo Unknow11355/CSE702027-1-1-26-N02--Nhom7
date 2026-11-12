@@ -13,6 +13,7 @@ class AuthService {
   User? get currentUser => _currentUser;
 
   bool isUsernameTaken(String username) {
+    _userRepository.reloadFromStorage();
     final normalized = username.trim();
     if (normalized.isEmpty) {
       return false;
@@ -20,7 +21,12 @@ class AuthService {
     return _userRepository.findByUsername(normalized) != null;
   }
 
-  User login({required String username, required String password}) {
+  User login({
+    required String username,
+    required String password,
+  }) {
+    _userRepository.reloadFromStorage();
+
     final normalizedUsername = username.trim();
     if (normalizedUsername.isEmpty || password.isEmpty) {
       throw const AppException('invalid_credentials');
@@ -42,6 +48,19 @@ class AuthService {
 
     _currentUser = user;
     return user;
+  }
+
+  String _generateNextUserId() {
+    var maxNum = 0;
+    for (final user in _userRepository.getAll()) {
+      final raw = user.id.toUpperCase().replaceFirst('U', '');
+      final parsed = int.tryParse(raw);
+      if (parsed != null && parsed > maxNum) {
+        maxNum = parsed;
+      }
+    }
+    final nextNum = maxNum + 1;
+    return 'U${nextNum.toString().padLeft(3, '0')}';
   }
 
   User registerReader({
@@ -72,10 +91,12 @@ class AuthService {
       throw const AppException('password_mismatch');
     }
 
-    final nextIndex = _userRepository.getAll().length + 1;
-    final nextId = 'U${nextIndex.toString().padLeft(3, '0')}';
+    final nextId = _generateNextUserId();
     final salt = 'salt_${nextId.toLowerCase()}';
-    final passwordHash = SeedData.computePasswordHash(password, salt);
+    final passwordHash = SeedData.computePasswordHash(
+      password,
+      salt,
+    );
 
     final newUser = User(
       id: nextId,
@@ -88,6 +109,22 @@ class AuthService {
 
     _userRepository.save(newUser);
     return newUser;
+  }
+
+  Future<User> registerReaderAsync({
+    required String fullName,
+    required String username,
+    required String password,
+    required String confirmPassword,
+  }) {
+    return _userRepository.runExclusiveWrite(
+      () => registerReader(
+        fullName: fullName,
+        username: username,
+        password: password,
+        confirmPassword: confirmPassword,
+      ),
+    );
   }
 
   void logout() {

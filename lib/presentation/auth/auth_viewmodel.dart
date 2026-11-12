@@ -61,7 +61,10 @@ class AuthViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final user = _authService.login(username: username, password: password);
+      final user = _authService.login(
+        username: username,
+        password: password,
+      );
       _hasLoginError = false;
       _isSubmitting = false;
       notifyListeners();
@@ -130,7 +133,7 @@ class AuthViewModel extends ChangeNotifier {
     }
 
     try {
-      _authService.registerReader(
+      await _authService.registerReaderAsync(
         fullName: trimmedName,
         username: trimmedUsername,
         password: password,

@@ -5,6 +5,7 @@ import '../../../core/app_routes.dart';
 import '../../../core/app_theme.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../models/user_role.dart';
+import '../../../services/loan_service.dart';
 import '../auth_viewmodel.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,8 +17,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController =
+      TextEditingController();
+  final TextEditingController _passwordController =
+      TextEditingController();
   bool _showPassword = false;
 
   @override
@@ -49,11 +52,18 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
     if (user == null) return;
 
+    await context.read<LoanService>().cancelExpiredPickupsAsync();
+    if (!mounted) return;
+
     final targetRoute = user.role == UserRole.librarian
         ? AppRoutes.librarianHome
         : AppRoutes.readerHome;
 
-    Navigator.pushNamedAndRemoveUntil(context, targetRoute, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      targetRoute,
+      (route) => false,
+    );
   }
 
   void _togglePasswordVisibility() {
@@ -63,7 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _openRegisterScreen() {
-    Navigator.pushNamed(context, AppRoutes.register);
+    Navigator.pushNamed(
+      context,
+      AppRoutes.register,
+    );
   }
 
   @override
@@ -196,7 +209,10 @@ class _LoginIntroHeader extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             l10n.loginSubtitle,
-            style: const TextStyle(fontSize: 16, color: AppTheme.muted),
+            style: const TextStyle(
+              fontSize: 16,
+              color: AppTheme.muted,
+            ),
           ),
         ],
       ],
@@ -221,7 +237,11 @@ class _LoginErrorBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.warning_amber, size: 24, color: AppTheme.danger),
+          const Icon(
+            Icons.warning_amber,
+            size: 24,
+            color: AppTheme.danger,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -238,7 +258,10 @@ class _LoginErrorBanner extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   l10n.loginErrorMessage,
-                  style: const TextStyle(fontSize: 13, color: AppTheme.danger),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppTheme.danger,
+                  ),
                 ),
               ],
             ),
@@ -298,7 +321,9 @@ class _LoginFieldsGroup extends StatelessWidget {
               tooltip: l10n.togglePasswordTooltip,
               onPressed: onTogglePassword,
               icon: Icon(
-                showPassword ? Icons.visibility : Icons.visibility_off,
+                showPassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
                 color: AppTheme.muted,
               ),
             ),
@@ -338,7 +363,9 @@ class _LoginActionButtons extends StatelessWidget {
         ElevatedButton(
           key: const Key('login-submit-button'),
           onPressed: isSubmitting ? null : onSubmit,
-          child: Text(hasError ? l10n.retryButton : l10n.loginButton),
+          child: Text(
+            hasError ? l10n.retryButton : l10n.loginButton,
+          ),
         ),
         const SizedBox(height: 16),
         TextButton(

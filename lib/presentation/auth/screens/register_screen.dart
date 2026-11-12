@@ -15,9 +15,12 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullNameController =
+      TextEditingController();
+  final TextEditingController _usernameController =
+      TextEditingController();
+  final TextEditingController _passwordController =
+      TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   bool _showPassword = false;
@@ -56,10 +59,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!success) return;
 
     final l10n = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(l10n.registerSuccessMessage)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.registerSuccessMessage),
+      ),
+    );
 
-    Navigator.pushReplacementNamed(context, AppRoutes.login);
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.login,
+    );
   }
 
   void _togglePasswordVisibility() {
@@ -75,7 +84,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _openLoginScreen() {
-    Navigator.pushReplacementNamed(context, AppRoutes.login);
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.login,
+    );
   }
 
   @override
@@ -106,7 +118,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               showPassword: _showPassword,
               showConfirmPassword: _showConfirmPassword,
               onTogglePassword: _togglePasswordVisibility,
-              onToggleConfirmPassword: _toggleConfirmPasswordVisibility,
+              onToggleConfirmPassword:
+                  _toggleConfirmPasswordVisibility,
               onSubmit: _handleRegister,
               onOpenLogin: _openLoginScreen,
             ),
@@ -177,7 +190,8 @@ class _RegisterFormSection extends StatelessWidget {
             const SizedBox(height: 16),
             TextButton(
               key: const Key('register-open-login-button'),
-              onPressed: authViewModel.isSubmitting ? null : onOpenLogin,
+              onPressed:
+                  authViewModel.isSubmitting ? null : onOpenLogin,
               child: Text(l10n.alreadyHaveAccountLoginPrompt),
             ),
           ],
@@ -211,7 +225,10 @@ class _RegisterHeaderSection extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             l10n.registerSubtitle,
-            style: const TextStyle(fontSize: 16, color: AppTheme.muted),
+            style: const TextStyle(
+              fontSize: 16,
+              color: AppTheme.muted,
+            ),
           ),
         ] else
           const _RegisterErrorBanner(),
@@ -237,7 +254,11 @@ class _RegisterErrorBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.warning_amber, size: 24, color: AppTheme.danger),
+          const Icon(
+            Icons.warning_amber,
+            size: 24,
+            color: AppTheme.danger,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -254,7 +275,10 @@ class _RegisterErrorBanner extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   l10n.registerErrorBannerMessage,
-                  style: const TextStyle(fontSize: 13, color: AppTheme.danger),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppTheme.danger,
+                  ),
                 ),
               ],
             ),
@@ -286,7 +310,10 @@ class _RegisterFieldsGroup extends StatelessWidget {
   final VoidCallback onTogglePassword;
   final VoidCallback onToggleConfirmPassword;
 
-  String? _translateError(AppLocalizations l10n, String? code) {
+  String? _translateError(
+    AppLocalizations l10n,
+    String? code,
+  ) {
     if (code == null) return null;
     if (code == 'username_exists') {
       return l10n.errorUsernameExists;
@@ -315,7 +342,10 @@ class _RegisterFieldsGroup extends StatelessWidget {
           decoration: InputDecoration(
             labelText: l10n.fullNameLabel,
             hintText: l10n.fullNameHint,
-            errorText: _translateError(l10n, authViewModel.fullNameErrorCode),
+            errorText: _translateError(
+              l10n,
+              authViewModel.fullNameErrorCode,
+            ),
           ),
         ),
         const SizedBox(height: 16),
@@ -326,7 +356,10 @@ class _RegisterFieldsGroup extends StatelessWidget {
           decoration: InputDecoration(
             labelText: l10n.usernameLabel,
             hintText: l10n.usernameHint,
-            errorText: _translateError(l10n, authViewModel.usernameErrorCode),
+            errorText: _translateError(
+              l10n,
+              authViewModel.usernameErrorCode,
+            ),
           ),
         ),
         const SizedBox(height: 16),
@@ -338,13 +371,18 @@ class _RegisterFieldsGroup extends StatelessWidget {
           decoration: InputDecoration(
             labelText: l10n.passwordLabel,
             hintText: l10n.passwordHint,
-            errorText: _translateError(l10n, authViewModel.passwordErrorCode),
+            errorText: _translateError(
+              l10n,
+              authViewModel.passwordErrorCode,
+            ),
             suffixIcon: IconButton(
               key: const Key('register-toggle-password-button'),
               tooltip: l10n.togglePasswordTooltip,
               onPressed: onTogglePassword,
               icon: Icon(
-                showPassword ? Icons.visibility : Icons.visibility_off,
+                showPassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
                 color: AppTheme.muted,
               ),
             ),
@@ -364,11 +402,15 @@ class _RegisterFieldsGroup extends StatelessWidget {
               authViewModel.confirmPasswordErrorCode,
             ),
             suffixIcon: IconButton(
-              key: const Key('register-toggle-confirm-password-button'),
+              key: const Key(
+                'register-toggle-confirm-password-button',
+              ),
               tooltip: l10n.toggleConfirmPasswordTooltip,
               onPressed: onToggleConfirmPassword,
               icon: Icon(
-                showConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                showConfirmPassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
                 color: AppTheme.muted,
               ),
             ),
