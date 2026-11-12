@@ -1,4 +1,4 @@
-﻿// Bước 13: Tra cứu phiếu mượn và tự động hủy phiếu quá hạn nhận
+﻿// Bước 14: Kiểm tra điều kiện hợp lệ và giữ bản sách khi đặt mượn
 import '../core/app_constants.dart';
 import '../core/app_exception.dart';
 import '../data/repositories/book_repository.dart';
