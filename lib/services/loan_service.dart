@@ -1,4 +1,4 @@
-﻿// Bước 14: Kiểm tra điều kiện hợp lệ và giữ bản sách khi đặt mượn
+﻿// Bước 15: Xử lý hủy yêu cầu đặt mượn và gia hạn phiếu mượn
 import '../core/app_constants.dart';
 import '../core/app_exception.dart';
 import '../data/repositories/book_repository.dart';
