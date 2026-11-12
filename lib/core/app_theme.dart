@@ -98,7 +98,10 @@ class AppTheme {
           disabledForegroundColor: disabledInk,
           elevation: 0,
           minimumSize: const Size.fromHeight(52),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
@@ -116,8 +119,13 @@ class AppTheme {
           foregroundColor: primary,
           disabledForegroundColor: disabledInk,
           minimumSize: const Size.fromHeight(52),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          side: const BorderSide(color: outline),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
+          side: const BorderSide(
+            color: outline,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
@@ -133,7 +141,10 @@ class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: primary,
           minimumSize: const Size.fromHeight(52),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
@@ -175,21 +186,32 @@ class AppTheme {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: outline),
+          borderSide: const BorderSide(
+            color: outline,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: primary, width: 1.5),
+          borderSide: const BorderSide(
+            color: primary,
+            width: 1.5,
+          ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: danger),
+          borderSide: const BorderSide(
+            color: danger,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: danger, width: 1.5),
+          borderSide: const BorderSide(
+            color: danger,
+            width: 1.5,
+          ),
         ),
       ),
     );
   }
 }
+
