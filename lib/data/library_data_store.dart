@@ -15,10 +15,15 @@ import 'store_sync_stub.dart'
 class LibraryDataStore extends ChangeNotifier {
   LibraryDataStore() {
     _loadSeedData();
-    _syncAdapter = StoreSyncAdapter(_applySerializedState);
+    _syncAdapter = StoreSyncAdapter(
+      _applySerializedState,
+    );
     final existingJson = _syncAdapter.loadInitialData();
     if (existingJson != null && existingJson.isNotEmpty) {
-      _applySerializedState(existingJson, notify: false);
+      _applySerializedState(
+        existingJson,
+        notify: false,
+      );
     } else {
       _syncAdapter.publishData(_encodeState());
     }
@@ -29,6 +34,8 @@ class LibraryDataStore extends ChangeNotifier {
   late List<Book> _books;
   late List<Loan> _loans;
   late List<Favorite> _favorites;
+  int _batchDepth = 0;
+  bool _hasPendingChanges = false;
 
   List<User> get users => List<User>.unmodifiable(_users);
 
@@ -36,13 +43,46 @@ class LibraryDataStore extends ChangeNotifier {
 
   List<Loan> get loans => List<Loan>.unmodifiable(_loans);
 
-  List<Favorite> get favorites => List<Favorite>.unmodifiable(_favorites);
+  List<Favorite> get favorites =>
+      List<Favorite>.unmodifiable(_favorites);
+
+  void reloadFromStorage({bool notify = false}) {
+    final rawJson = _syncAdapter.loadInitialData();
+    if (rawJson != null && rawJson.isNotEmpty) {
+      _applySerializedState(
+        rawJson,
+        notify: notify,
+      );
+    }
+  }
+
+  T runBatch<T>(T Function() action) {
+    if (_batchDepth == 0) {
+      reloadFromStorage(notify: false);
+    }
+    _batchDepth++;
+    try {
+      return action();
+    } finally {
+      _batchDepth--;
+      if (_batchDepth == 0 && _hasPendingChanges) {
+        _hasPendingChanges = false;
+        _publishAndNotify();
+      }
+    }
+  }
+
+  Future<T> runExclusiveWrite<T>(T Function() action) {
+    return _syncAdapter.runExclusive<T>(() => runBatch<T>(action));
+  }
 
   void _loadSeedData() {
     _users = List<User>.of(SeedData.createInitialUsers());
     _books = List<Book>.of(SeedData.createInitialBooks());
     _loans = List<Loan>.of(SeedData.createInitialLoans());
-    _favorites = List<Favorite>.of(SeedData.createInitialFavorites());
+    _favorites = List<Favorite>.of(
+      SeedData.createInitialFavorites(),
+    );
   }
 
   void resetToSeedData() {
@@ -51,55 +91,103 @@ class LibraryDataStore extends ChangeNotifier {
   }
 
   void saveUser(User user) {
-    _saveById<User>(_users, user, (item) => item.id);
+    runBatch(() {
+      _saveById<User>(_users, user, (item) => item.id);
+    });
   }
 
   void saveBook(Book book) {
-    _saveById<Book>(_books, book, (item) => item.id);
+    runBatch(() {
+      _saveById<Book>(_books, book, (item) => item.id);
+    });
   }
 
   void saveLoan(Loan loan) {
-    _saveById<Loan>(_loans, loan, (item) => item.id);
+    runBatch(() {
+      _saveById<Loan>(_loans, loan, (item) => item.id);
+    });
+  }
+
+  void saveLoans(List<Loan> loans) {
+    if (loans.isEmpty) {
+      return;
+    }
+    runBatch(() {
+      for (final loan in loans) {
+        _upsertById<Loan>(_loans, loan, (item) => item.id);
+      }
+      _publishAndNotify();
+    });
   }
 
   void removeBook(String bookId) {
-    _books.removeWhere((book) => book.id == bookId);
-    _favorites.removeWhere((favorite) => favorite.bookId == bookId);
-    _publishAndNotify();
+    runBatch(() {
+      _books.removeWhere((book) => book.id == bookId);
+      _favorites.removeWhere((favorite) => favorite.bookId == bookId);
+      _publishAndNotify();
+    });
   }
 
   void addFavorite(Favorite favorite) {
-    final exists = _favorites.any(
-      (item) =>
-          item.userId == favorite.userId && item.bookId == favorite.bookId,
-    );
+    runBatch(() {
+      final exists = _favorites.any(
+        (item) =>
+            item.userId == favorite.userId &&
+            item.bookId == favorite.bookId,
+      );
 
-    if (exists) return;
+      if (exists) return;
 
-    _favorites.add(favorite);
-    _publishAndNotify();
+      _favorites.add(favorite);
+      _publishAndNotify();
+    });
   }
 
-  void removeFavorite({required String userId, required String bookId}) {
-    _favorites.removeWhere(
-      (item) => item.userId == userId && item.bookId == bookId,
-    );
-    _publishAndNotify();
+  void removeFavorite({
+    required String userId,
+    required String bookId,
+  }) {
+    runBatch(() {
+      final removedCount = _favorites.length;
+      _favorites.removeWhere(
+        (item) => item.userId == userId && item.bookId == bookId,
+      );
+      if (_favorites.length != removedCount) {
+        _publishAndNotify();
+      }
+    });
   }
 
-  void _saveById<T>(List<T> items, T value, String Function(T) idOf) {
-    final index = items.indexWhere((item) => idOf(item) == idOf(value));
+  void _upsertById<T>(
+    List<T> items,
+    T value,
+    String Function(T) idOf,
+  ) {
+    final index = items.indexWhere(
+      (item) => idOf(item) == idOf(value),
+    );
 
     if (index == -1) {
       items.insert(0, value);
     } else {
       items[index] = value;
     }
+  }
 
+  void _saveById<T>(
+    List<T> items,
+    T value,
+    String Function(T) idOf,
+  ) {
+    _upsertById<T>(items, value, idOf);
     _publishAndNotify();
   }
 
   void _publishAndNotify() {
+    if (_batchDepth > 0) {
+      _hasPendingChanges = true;
+      return;
+    }
     _syncAdapter.publishData(_encodeState());
     notifyListeners();
   }
@@ -114,7 +202,10 @@ class LibraryDataStore extends ChangeNotifier {
     return jsonEncode(payload);
   }
 
-  void _applySerializedState(String rawJson, {bool notify = true}) {
+  void _applySerializedState(
+    String rawJson, {
+    bool notify = true,
+  }) {
     try {
       final decoded = jsonDecode(rawJson);
       if (decoded is! Map<String, dynamic>) {

@@ -10,7 +10,10 @@ import '../models/user_role.dart';
 class SeedData {
   SeedData._();
 
-  static String computePasswordHash(String password, String salt) {
+  static String computePasswordHash(
+    String password,
+    String salt,
+  ) {
     final bytes = utf8.encode('$salt:$password:library_v1');
     var hash1 = 0x811c9dc5;
     var hash2 = 0x01000193;
@@ -32,13 +35,18 @@ class SeedData {
     const librarianSalt = 'salt_u002';
     const reader2Salt = 'salt_u003';
     const reader3Salt = 'salt_u004';
+    const reader4Salt = 'salt_u005';
+    const reader5Salt = 'salt_u006';
 
     return <User>[
       User(
         id: 'U001',
         fullName: 'Vũ Xuân Minh',
         username: 'minh.reader',
-        passwordHash: computePasswordHash(defaultPassword, readerSalt),
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          readerSalt,
+        ),
         passwordSalt: readerSalt,
         role: UserRole.reader,
       ),
@@ -46,15 +54,21 @@ class SeedData {
         id: 'U002',
         fullName: 'Tài khoản thủ thư',
         username: 'librarian',
-        passwordHash: computePasswordHash(defaultPassword, librarianSalt),
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          librarianSalt,
+        ),
         passwordSalt: librarianSalt,
         role: UserRole.librarian,
       ),
       User(
         id: 'U003',
-        fullName: 'Lê Anh Quân',
-        username: 'anhquanreader',
-        passwordHash: computePasswordHash(defaultPassword, reader2Salt),
+        fullName: 'Trần Thị Lan',
+        username: 'lan.reader',
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          reader2Salt,
+        ),
         passwordSalt: reader2Salt,
         role: UserRole.reader,
       ),
@@ -62,8 +76,33 @@ class SeedData {
         id: 'U004',
         fullName: 'Lê Quốc Huy',
         username: 'huy.reader',
-        passwordHash: computePasswordHash(defaultPassword, reader3Salt),
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          reader3Salt,
+        ),
         passwordSalt: reader3Salt,
+        role: UserRole.reader,
+      ),
+      User(
+        id: 'U005',
+        fullName: 'Nguyễn Thị Mai',
+        username: 'mai.reader',
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          reader4Salt,
+        ),
+        passwordSalt: reader4Salt,
+        role: UserRole.reader,
+      ),
+      User(
+        id: 'U006',
+        fullName: 'Phạm Hoàng Nam',
+        username: 'nam.reader',
+        passwordHash: computePasswordHash(
+          defaultPassword,
+          reader5Salt,
+        ),
+        passwordSalt: reader5Salt,
         role: UserRole.reader,
       ),
     ];
@@ -77,7 +116,8 @@ class SeedData {
       category: 'Văn học',
       totalCopies: 5,
       coverAsset: 'assets/books/demmen.png',
-      description: 'Hành trình khám phá thế giới của Dế Mèn qua những cuộc gặp gỡ, thử thách và bài học về tình bạn, lòng dũng cảm.',
+      description:
+          'Hành trình khám phá thế giới của Dế Mèn qua những cuộc gặp gỡ, thử thách và bài học về tình bạn, lòng dũng cảm.',
     ),
     const Book(
       id: 'B002',
@@ -86,7 +126,8 @@ class SeedData {
       category: 'Văn học',
       totalCopies: 4,
       coverAsset: 'assets/books/hoavang.png',
-      description: 'Câu chuyện tuổi thơ trong trẻo nơi làng quê với những rung động đầu đời và tình anh em ấm áp.',
+      description:
+          'Câu chuyện tuổi thơ trong trẻo nơi làng quê với những rung động đầu đời và tình anh em ấm áp.',
     ),
     const Book(
       id: 'B003',
@@ -95,7 +136,8 @@ class SeedData {
       category: 'Văn học',
       totalCopies: 3,
       coverAsset: 'assets/books/alchemist.png',
-      description: 'Hành trình đi tìm kho báu và khám phá điều có ý nghĩa với chính mình.',
+      description:
+          'Hành trình đi tìm kho báu và khám phá điều có ý nghĩa với chính mình.',
     ),
     const Book(
       id: 'B004',
@@ -104,7 +146,8 @@ class SeedData {
       category: 'Văn học',
       totalCopies: 4,
       coverAsset: 'assets/books/sodo.png',
-      description: 'Tác phẩm trào phúng kinh điển phản ánh xã hội thành thị Việt Nam những năm 1930.',
+      description:
+          'Tác phẩm trào phúng kinh điển phản ánh xã hội thành thị Việt Nam những năm 1930.',
     ),
     const Book(
       id: 'B005',
@@ -113,7 +156,8 @@ class SeedData {
       category: 'Khoa học',
       totalCopies: 4,
       coverAsset: 'assets/books/thinking.png',
-      description: 'Khám phá hai hệ thống tư duy chi phối cách chúng ta suy nghĩ và đưa ra quyết định.',
+      description:
+          'Khám phá hai hệ thống tư duy chi phối cách chúng ta suy nghĩ và đưa ra quyết định.',
     ),
     const Book(
       id: 'B006',
@@ -191,7 +235,7 @@ class SeedData {
       ),
       Loan(
         id: 'PM025',
-        userId: 'U003',
+        userId: 'U005',
         bookId: 'B002',
         createdAt: today,
         pickupDate: today.add(const Duration(days: 2)),
@@ -219,7 +263,7 @@ class SeedData {
       ),
       Loan(
         id: 'PM026',
-        userId: 'U004',
+        userId: 'U005',
         bookId: 'B003',
         createdAt: today.subtract(const Duration(days: 1)),
         pickupDate: today.add(const Duration(days: 1)),
@@ -235,7 +279,7 @@ class SeedData {
       ),
       Loan(
         id: 'PM022',
-        userId: 'U004',
+        userId: 'U006',
         bookId: 'B004',
         createdAt: today.subtract(const Duration(days: 1)),
         pickupDate: today.add(const Duration(days: 1)),
@@ -253,7 +297,7 @@ class SeedData {
       ),
       Loan(
         id: 'PM029',
-        userId: 'U003',
+        userId: 'U006',
         bookId: 'B005',
         createdAt: today.subtract(const Duration(days: 2)),
         pickupDate: today.subtract(const Duration(days: 1)),
@@ -265,6 +309,9 @@ class SeedData {
   }
 
   static List<Favorite> createInitialFavorites() => <Favorite>[
-    const Favorite(userId: 'U001', bookId: 'B001'),
+    const Favorite(
+      userId: 'U001',
+      bookId: 'B001',
+    ),
   ];
 }

@@ -30,4 +30,12 @@ class UserRepository {
   void save(User user) {
     _store.saveUser(user);
   }
+
+  void reloadFromStorage() {
+    _store.reloadFromStorage(notify: false);
+  }
+
+  Future<T> runExclusiveWrite<T>(T Function() action) {
+    return _store.runExclusiveWrite<T>(action);
+  }
 }

@@ -16,12 +16,23 @@ external void _windowAddEventListener(
   JSFunction listener,
 );
 
+@JS('window.navigator.locks')
+external _LockManager? get _navigatorLocks;
+
+extension type _LockManager(JSObject _) implements JSObject {
+  external JSPromise<JSAny?> request(
+    JSString name,
+    JSFunction callback,
+  );
+}
+
 class StoreSyncAdapter {
   StoreSyncAdapter(this._onRemoteData) {
     _initListeners();
   }
 
   static const String _storageKey = 'library_shared_store_v1';
+  static const String _lockName = 'library_shared_store_lock_v1';
 
   final void Function(String json) _onRemoteData;
   String? _lastKnownJson;
@@ -74,6 +85,43 @@ class StoreSyncAdapter {
     } catch (_) {
       // Ignore storage quota or private mode errors.
     }
+  }
+
+  Future<T> runExclusive<T>(FutureOr<T> Function() action) async {
+    final locks = _navigatorLocks;
+    if (locks == null) {
+      return await action();
+    }
+
+    late T result;
+    Object? capturedError;
+    StackTrace? capturedStack;
+    var callbackExecuted = false;
+
+    final callback = ((JSAny? _) {
+      callbackExecuted = true;
+      return Future<void>(() async {
+        try {
+          result = await action();
+        } catch (error, stackTrace) {
+          capturedError = error;
+          capturedStack = stackTrace;
+        }
+      }).toJS;
+    }).toJS;
+
+    try {
+      await locks.request(_lockName.toJS, callback).toDart;
+    } catch (_) {
+      if (!callbackExecuted) {
+        return await action();
+      }
+    }
+
+    if (capturedError != null) {
+      Error.throwWithStackTrace(capturedError!, capturedStack!);
+    }
+    return result;
   }
 
   void dispose() {
