@@ -12,7 +12,10 @@ class WelcomeScreen extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(padding: EdgeInsets.all(24), child: _WelcomeContent()),
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: _WelcomeContent(),
+          ),
         ),
       ),
     );
@@ -39,17 +42,27 @@ class _WelcomeContent extends StatelessWidget {
         ElevatedButton(
           key: const Key('welcome-login-button'),
           onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.login);
+            Navigator.pushNamed(
+              context,
+              AppRoutes.login,
+            );
           },
-          child: Text(l10n.loginButton),
+          child: Text(
+            l10n.loginButton,
+          ),
         ),
         const SizedBox(height: 16),
         OutlinedButton(
           key: const Key('welcome-register-button'),
           onPressed: () {
-            Navigator.pushNamed(context, AppRoutes.register);
+            Navigator.pushNamed(
+              context,
+              AppRoutes.register,
+            );
           },
-          child: Text(l10n.createReaderAccountButton),
+          child: Text(
+            l10n.createReaderAccountButton,
+          ),
         ),
       ],
     );
@@ -65,7 +78,11 @@ class _WelcomeBrandRow extends StatelessWidget {
 
     return Row(
       children: [
-        const Icon(Icons.menu_book, size: 32, color: AppTheme.primary),
+        const Icon(
+          Icons.menu_book,
+          size: 32,
+          color: AppTheme.primary,
+        ),
         const SizedBox(width: 12),
         Expanded(
           child: Text(
@@ -89,7 +106,10 @@ class _BookshelfIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 28,
+      ),
       decoration: BoxDecoration(
         color: AppTheme.primarySoft,
         borderRadius: BorderRadius.circular(28),
@@ -124,7 +144,10 @@ class _BookshelfIllustration extends StatelessWidget {
 }
 
 class _CoverPreviewItem extends StatelessWidget {
-  const _CoverPreviewItem({required this.assetPath, required this.height});
+  const _CoverPreviewItem({
+    required this.assetPath,
+    required this.height,
+  });
 
   final String assetPath;
   final double height;
@@ -133,7 +156,11 @@ class _CoverPreviewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
-      child: Image.asset(assetPath, height: height, fit: BoxFit.contain),
+      child: Image.asset(
+        assetPath,
+        height: height,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
