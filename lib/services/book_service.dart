@@ -1,4 +1,4 @@
-﻿// Bước 21: Xây dựng màn hình tra cứu danh mục sách độc giả
+﻿// Bước 22: Thêm màn hình chi tiết sách và số bản khả dụng
 import '../core/app_exception.dart';
 import '../data/repositories/book_repository.dart';
 import '../data/repositories/favorite_repository.dart';
@@ -461,5 +461,6 @@ class BookService {
     }
   }
 }
+
 
 
