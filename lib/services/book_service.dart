@@ -1,4 +1,4 @@
-﻿// Bước 20: Thêm ViewModel và thành phần hiển thị thẻ sách
+﻿// Bước 21: Xây dựng màn hình tra cứu danh mục sách độc giả
 import '../core/app_exception.dart';
 import '../data/repositories/book_repository.dart';
 import '../data/repositories/favorite_repository.dart';
@@ -461,4 +461,5 @@ class BookService {
     }
   }
 }
+
 
