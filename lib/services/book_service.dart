@@ -1,4 +1,5 @@
-﻿import '../core/app_exception.dart';
+﻿// Bước 20: Thêm ViewModel và thành phần hiển thị thẻ sách
+import '../core/app_exception.dart';
 import '../data/repositories/book_repository.dart';
 import '../data/repositories/favorite_repository.dart';
 import '../data/repositories/loan_repository.dart';
@@ -460,3 +461,4 @@ class BookService {
     }
   }
 }
+
